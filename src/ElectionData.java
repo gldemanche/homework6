@@ -6,15 +6,11 @@ class ElectionData {
     private Scanner keyboard = new Scanner(System.in);
 
     ElectionData() {
-        this.ballot.put("Gompei", new Votes(0,0,0));
-        this.ballot.put("Husky", new Votes(0,0,0));
-        this.ballot.put("Julez", new Votes(0, 0, 0));
-
     }
 
-
-
-
+    /**
+     * Prints out the candidates currently on the ballot
+     */
     public void printBallot() {
         System.out.println("The candidates are ");
         for (Map.Entry<String, Votes> entry : ballot.entrySet()) {
@@ -22,6 +18,14 @@ class ElectionData {
         }
     }
 
+    /**
+     * Processes a vote for a first, second, and third choice candidiate
+     * @param firstVote the first choice candidate
+     * @param secondVote the second choice candidate
+     * @param thirdVote the third choice candidate
+     * @throws DuplicateVotesException if any of the choices are the same
+     * @throws UnknownCandidateException if any of the candidates are not on the ballot
+     */
     public void processVote(String firstVote, String secondVote, String thirdVote)
             throws DuplicateVotesException, UnknownCandidateException {
         if(!ballot.containsKey(firstVote)) {
@@ -56,6 +60,10 @@ class ElectionData {
 
     }
 
+    /**
+     * @param name the candidate to be added to the ballot
+     * @throws CandidateExistsException if the candidate already exists on the ballot
+     */
     public void addCandidate(String name) throws CandidateExistsException{
         if(ballot.containsKey(name)){
             throw new CandidateExistsException(name);
@@ -65,6 +73,10 @@ class ElectionData {
         }
     }
 
+    /**
+     * Finds the candidate that had over 50% of the first choice votes, if any.
+     * @return the candidate who had over 50% or "runoff required" if none won over 50%
+     */
     public String findWinnerMostFirstVotes(){
         String firstWinner = "Runoff required";
 
@@ -86,6 +98,11 @@ class ElectionData {
         return firstWinner;
     }
 
+    /**
+     * Finds the candidate with the most vote points from an election, 3 pts for each first choice vote,
+     * 2 for each second choice vote, and 1 for each third choice vote
+     * @return the name of the candidate who received the most points
+     */
     public String findWinnerMostPoints(){
         String currentWinner = "";
         int currentWinningScore = 0;
