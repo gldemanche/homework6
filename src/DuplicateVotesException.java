@@ -5,7 +5,10 @@ public class DuplicateVotesException extends Exception {
         this.multiVoteCandidate = name;
     }
 
-    //getter
+    /**
+     * getter for the candidate who caused the exception to be thrown
+     * @return the name of the candidate
+     */
     public String getMultiVoteCandidate(){
         return this.multiVoteCandidate;
     }

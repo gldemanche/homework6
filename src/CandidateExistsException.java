@@ -4,8 +4,10 @@ public class CandidateExistsException extends Exception{
         this.existsCandidate = name;
     }
 
-    //getter
-
+    /**
+     * getter for the candidate who caused the exception to be thrown
+     * @return the name of the candidate
+     */
     public String getCanidateThatAlreadyExists(){
         return this.existsCandidate;
     }

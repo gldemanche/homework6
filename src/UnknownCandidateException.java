@@ -5,7 +5,10 @@ public class UnknownCandidateException extends Exception {
         this.unknownCandidate = name;
     }
 
-    //getter
+    /**
+     * getter for the candidate who caused the exception to be thrown
+     * @return the name of the candidate
+     */
     public String getUnknownCandidate(){
         return this.unknownCandidate;
     }
