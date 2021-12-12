@@ -1,7 +1,14 @@
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws CandidateExistsException {
 
-        VotingMachine voteDay = new VotingMachine(new ElectionData());
+        ElectionData data = new ElectionData();
+        VotingMachine voteDay = new VotingMachine(data);
+        voteDay.addWriteIn("Julez");
+        voteDay.addWriteIn("Me");
+        voteDay.addWriteIn("Leo");
+
         voteDay.screen();
+
+        System.out.println(data.findWinnerMostFirstVotes());
     }
 }

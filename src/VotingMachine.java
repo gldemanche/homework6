@@ -1,7 +1,3 @@
-import com.sun.javafx.geom.Curve;
-
-import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
 public class VotingMachine {
@@ -10,15 +6,64 @@ public class VotingMachine {
 
     public VotingMachine(ElectionData election){
         this.election = election;
+    }
+
+
+    /**
+     * allows the user to write in a candidate
+     * @param name the name of the candidate to be written in
+     * @throws CandidateExistsException if the candidate is already on the ballot
+     */
+    public void addWriteIn(String name) throws CandidateExistsException {
+        election.addCandidate(name);
         System.out.println("Candidate was added successfully");
     }
 
 
-    public void addWriteIn(String name) throws CandidateExistsException {
-        election.addCandidate(name);
+    /**
+     * helper function to see if the user wants to add the candidate that threw and exception
+     * @param x the unknown candidate exception thrown
+     */
+    public void doYouWantToAdd(UnknownCandidateException x) {
+        String answer = keyboard.next();
+        if (answer.toLowerCase().equals("y")) {
+            try {
+                addWriteIn(x.getUnknownCandidate());
+            } catch (CandidateExistsException r) {
+                System.out.println("Candidate already" + r.getCanidateThatAlreadyExists() + " exists");
+            }
+        }
+        screen();
     }
 
-    public void screen() {
+    /**
+     * Helper function to process votes and catch possible exceptions
+     * @param firstCandidate the first choice vote
+     * @param secondCandidate the second choice vote
+     * @param thirdCandidate the third choice vote
+     */
+    public void helperProcessVote(String firstCandidate, String secondCandidate, String thirdCandidate) {
+        try {
+            election.processVote(firstCandidate, secondCandidate, thirdCandidate);
+
+            System.out.println("You voted for " + firstCandidate);
+            System.out.println("You voted for " + secondCandidate);
+            System.out.println("You voted for " + thirdCandidate);
+        } catch (UnknownCandidateException t) {
+            System.out.println("Unknown Canidate");
+            System.out.println("Would you like to add " + t.getUnknownCandidate() + " as a candidate?");
+            doYouWantToAdd(t);
+        } catch (DuplicateVotesException e) {
+            System.out.println("You can not vot for " + e.getMultiVoteCandidate() + " twice.");
+            screen();
+
+        }
+    }
+
+    /**
+     *Allows the user to vote for candidates by promoting them on the screen to enter their candidate choices
+     */
+    public void screen(){
             this.election.printBallot();
             System.out.println("Who do you want to vote for first");
             String firstCandidate = keyboard.next();
@@ -26,30 +71,7 @@ public class VotingMachine {
             String secondCandidate = keyboard.next();
             System.out.println("Who do you want to vote for third");
             String thirdCandidate = keyboard.next();
-
-            try {
-                election.processVote(firstCandidate, secondCandidate, thirdCandidate);
-
-                System.out.println("You voted for " + firstCandidate);
-                System.out.println("You voted for " + secondCandidate);
-                System.out.println("You voted for " + thirdCandidate);
-            } catch (UnknownCandidateException t) {
-                System.out.println("Unknown Canidate");
-                System.out.println("Would you like to add " + t.getUnknownCandidate() + " as a candidate?");
-                String answer = keyboard.next();
-                if (answer.toLowerCase().equals("y")) {
-                    try {
-                        addWriteIn(t.getUnknownCandidate());
-                    } catch (CandidateExistsException r) {
-                        System.out.println("Candidate already" + r.getCanidateThatAlreadyExists() +" exists");
-                    }
-                }
-                screen();
-            } catch (DuplicateVotesException e) {
-                System.out.println("You can not vot for " + e.getMultiVoteCandidate() + " twice.");
-                screen();
-            }
-
-
+            helperProcessVote(firstCandidate, secondCandidate, thirdCandidate);
     }
 }
+

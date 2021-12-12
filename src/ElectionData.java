@@ -84,7 +84,7 @@ class ElectionData {
 
         for(Map.Entry<String, Votes> element : ballot.entrySet()){
             Votes votes = element.getValue();
-            totalVotes =+ votes.countVotes(1);
+            totalVotes += votes.countVotes(1);
         }
 
         for(Map.Entry<String, Votes> element: ballot.entrySet()){
