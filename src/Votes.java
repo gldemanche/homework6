@@ -9,6 +9,10 @@ public class Votes {
 
     }
 
+    /**
+     * setter for adding votes
+     * @param voteNum either firstVote (1), secondVote (2), or thirdVote (3)
+     */
     public void addVote(int voteNum){
         if(voteNum == 1){
             this.firstVotes++;
@@ -21,7 +25,11 @@ public class Votes {
         }
     }
 
-    //getter for votes by number
+    /**
+     * getter for counting votes
+     * @param voteNum either firstVote (1), secondVote (2), or thirdVote (3)
+     * @return the number of votes received for the given vote number
+     */
     public int countVotes(int voteNum){
         if(voteNum == 1){
             return firstVotes;
@@ -37,7 +45,10 @@ public class Votes {
         }
     }
 
-    //gets total points scaled
+    /**
+     * totals the points received with 3 for firstVotes, 2 for secondVotes, and 1 for third Votes
+     * @return the number of points received
+     */
     public int totalVotePoints(){
         return((this.firstVotes * 3) +
                 (this.secondVotes * 2) +
