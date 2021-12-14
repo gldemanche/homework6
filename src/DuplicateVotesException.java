@@ -1,3 +1,7 @@
+/**
+ * Duplicate Votes Exception
+ * @author Gabe Demanche & Chris Chow
+ */
 public class DuplicateVotesException extends Exception {
     private String multiVoteCandidate;
 

@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ *  Voting Machine Class
+ *  @author Gabe Demanche & Chris Chow
+ */
 public class VotingMachine {
     private Scanner keyboard = new Scanner(System.in);
     private ElectionData election;
@@ -73,5 +77,22 @@ public class VotingMachine {
             String thirdCandidate = keyboard.next();
             helperProcessVote(firstCandidate, secondCandidate, thirdCandidate);
     }
+
+
+    /**
+     * main to test and run program
+     * @param args
+     * @throws CandidateExistsException if add write in throws
+     */
+    public static void main(String[] args) throws CandidateExistsException {
+        ElectionData data = new ElectionData();
+        VotingMachine voteDay = new VotingMachine(data);
+        voteDay.addWriteIn("Julez");
+        voteDay.addWriteIn("Me");
+        voteDay.addWriteIn("Leo");
+
+        voteDay.screen();
+    }
+
 }
 

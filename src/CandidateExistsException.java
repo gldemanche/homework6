@@ -1,3 +1,7 @@
+/**
+ * Candidate exception
+ * @author Gabe Demanche & Chris Chow
+ */
 public class CandidateExistsException extends Exception{
     private String existsCandidate;
     public CandidateExistsException(String name){

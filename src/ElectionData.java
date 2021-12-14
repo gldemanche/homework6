@@ -1,6 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+/**
+ * Election Data Class
+ * @author Gabe Demanche & Chris Chow
+ */
 class ElectionData {
     private HashMap<String, Votes> ballot = new HashMap<String, Votes>();
     private Scanner keyboard = new Scanner(System.in);

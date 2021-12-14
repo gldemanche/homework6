@@ -1,3 +1,7 @@
+/**
+ * EUnknown Candidate exception
+ * @author Gabe Demanche & Chris Chow
+ */
 public class UnknownCandidateException extends Exception {
     private String unknownCandidate;
 

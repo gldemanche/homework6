@@ -1,3 +1,7 @@
+/**
+ * Votes Class
+ * @author Gabe Demanche & Chris Chow
+ */
 public class Votes {
     private int firstVotes;
     private int secondVotes;
