@@ -177,17 +177,17 @@ public class Examples {
     public void testCandidateExistsException() throws CandidateExistsException{
         Election1().addCandidate("gompei");
     }
-    /*
+
     //tests DuplicateVotesException
     @Test(expected = DuplicateVotesException.class)
-    public void testDuplicateVoteException() throws DuplicateVotesException{
+    public void testDuplicateVoteException() throws DuplicateVotesException, UnknownCandidateException {
         Election1().processVote("gompei","gompei","husky");
     }
     //tests UnknownCandidateException
     @Test(expected = UnknownCandidateException.class)
-    public void testUnknownCandidateException() throws UnknownCandidateException {
+    public void testUnknownCandidateException() throws UnknownCandidateException, DuplicateVotesException {
         Election1().processVote("bob", "husky", "gompei");
     }
 
-     */
+
 }
