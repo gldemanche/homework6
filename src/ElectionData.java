@@ -91,7 +91,7 @@ class ElectionData {
             String name = element.getKey();
             Votes vote = element.getValue();
 
-            if(vote.countVotes(1) >= .5* totalVotes){
+            if(vote.countVotes(1) > .5* totalVotes){
                 return name;
             }
         }
@@ -112,6 +112,7 @@ class ElectionData {
 
             if(currentWinningScore <= votes.totalVotePoints()){
                  currentWinner = name;
+                 currentWinningScore = votes.totalVotePoints();
             }
         }
         return currentWinner;

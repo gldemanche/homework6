@@ -9,6 +9,6 @@ public class Main {
 
         voteDay.screen();
 
-        System.out.println(data.findWinnerMostFirstVotes());
+        System.out.println(data.findWinnerMostPoints());
     }
 }
